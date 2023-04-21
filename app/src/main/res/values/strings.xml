@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Cooking</string>
+    <string name="view_recipes">View Recipes</string>
+    <string name="add_recipe">Add Recipe</string>
+    <string name="scroll_view">Scroll View</string>
+    <string name="ingredient_name_hint">Ingredient</string>
+    <string name="delete_ingredient">Delete Ingredient</string>
+    <string name="quantity">Quantity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

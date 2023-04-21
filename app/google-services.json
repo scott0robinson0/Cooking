@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "130925560472",
+    "project_id": "cooking-bd760",
+    "storage_bucket": "cooking-bd760.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130925560472:android:137ea2b1873427d1c946ed",
+        "android_client_info": {
+          "package_name": "uk.ac.abertay.cmp309.cooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130925560472-5cqfqpbn7l2n096bu81b4kcc4gaq7pk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZPGdgoPQzEkUwNRSLnLZzwo5pVvOX_FE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130925560472-5cqfqpbn7l2n096bu81b4kcc4gaq7pk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
