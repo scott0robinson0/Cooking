@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class ExecuteAdapter extends FragmentStateAdapter {
-    private int NUM_PAGES;
-    private ArrayList<Fragment> fragments = new ArrayList<>();
+    private final int NUM_PAGES;
     Recipe recipe;
+
     public ExecuteAdapter(@NonNull FragmentActivity fragmentActivity, Recipe recipe) {
         super(fragmentActivity);
         this.recipe = recipe;
@@ -33,16 +33,12 @@ public class ExecuteAdapter extends FragmentStateAdapter {
             args.putParcelable("instruction", recipe.getInstructions().get(position - 1));
         } else {
             fragment = new ExecuteInstructionTimerFragment();
-            args.putParcelable("instruction", recipe.getInstructions().get(position - 1));
+            args.putParcelable("recipe", recipe);
             args.putInt("position", position);
         }
 
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public void addFragment(Fragment fragment) {
-        fragments.add(fragment);
     }
 
     @Override

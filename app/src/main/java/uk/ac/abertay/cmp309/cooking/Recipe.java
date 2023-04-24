@@ -13,7 +13,6 @@ public class Recipe implements Parcelable {
     public static final String KEY_INGREDIENTS = "ingredients";
     public static final String KEY_INSTRUCTIONS = "instructions";
     public static final String KEY_NAME = "name";
-
     private String name;
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Instruction> instructions;
