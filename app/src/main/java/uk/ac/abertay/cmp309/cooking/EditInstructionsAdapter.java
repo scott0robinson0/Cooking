@@ -1,6 +1,7 @@
 package uk.ac.abertay.cmp309.cooking;
 
 import android.content.Context;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class EditInstructionsAdapter extends ArrayAdapter<Instruction> {
     public EditInstructionsAdapter(Context context, ArrayList<Instruction> instructions) {
@@ -55,6 +57,7 @@ public class EditInstructionsAdapter extends ArrayAdapter<Instruction> {
         });
 
         etInstruction.setText(instruction.instruction);
+
         etTimer.setText(instruction.timer);
 
         return convertView;

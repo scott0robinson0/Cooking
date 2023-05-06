@@ -34,6 +34,9 @@ public class EditIngredientsFragment extends Fragment {
         etIngredientQuantity = view.findViewById(R.id.etIngredientQuantity);
         btnAddIngredient = view.findViewById(R.id.btnAddIngredient);
 
+        etIngredientName.setText(viewModel.getIngredientName());
+        etIngredientQuantity.setText(viewModel.getIngredientQuantity());
+
         editIngredientsAdapter = new EditIngredientsAdapter(getContext(), recipe.getIngredients());
         lvIngredients.setAdapter(editIngredientsAdapter);
 
@@ -64,5 +67,8 @@ public class EditIngredientsFragment extends Fragment {
         super.onPause();
         if (!recipe.getInstructions().isEmpty())
             viewModel.getRecipe().setInstructions(recipe.getInstructions());
+
+        viewModel.setIngredientName(etIngredientName.getText().toString());
+        viewModel.setIngredientQuantity(etIngredientQuantity.getText().toString());
     }
 }

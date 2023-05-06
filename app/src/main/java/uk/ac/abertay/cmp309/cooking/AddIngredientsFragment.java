@@ -9,6 +9,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,21 +22,29 @@ public class AddIngredientsFragment extends Fragment {
     ImageButton btnAddIngredient;
     ArrayList<Ingredient> ingredients = new ArrayList<>();
     AddIngredientsAdapter addIngredientsAdapter;
-    IngredientsInstructionsViewModel viewModel;
+    AddRecipeViewModel viewModel;
+
     public AddIngredientsFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        return inflater.inflate(R.layout.fragment_add_ingredients, container, false);
+    }
 
-        View view = inflater.inflate(R.layout.fragment_add_ingredients, container, false);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(IngredientsInstructionsViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(AddRecipeViewModel.class);
         ListView lvIngredients = view.findViewById(R.id.lvIngredients);
         etIngredientName = view.findViewById(R.id.etIngredientName);
         etIngredientQuantity = view.findViewById(R.id.etIngredientQuantity);
         btnAddIngredient = view.findViewById(R.id.btnAddIngredient);
+
+        etIngredientName.setText(viewModel.getIngredientName());
+        etIngredientQuantity.setText(viewModel.getIngredientQuantity());
+        ingredients = viewModel.getIngredients();
 
         addIngredientsAdapter = new AddIngredientsAdapter(getContext(), ingredients);
         lvIngredients.setAdapter(addIngredientsAdapter);
@@ -57,8 +67,6 @@ public class AddIngredientsFragment extends Fragment {
                 }
             }
         });
-
-        return view;
     }
 
     @Override
@@ -66,5 +74,8 @@ public class AddIngredientsFragment extends Fragment {
         super.onPause();
         if (!ingredients.isEmpty())
             viewModel.setIngredients(ingredients);
+
+        viewModel.setIngredientName(etIngredientName.getText().toString());
+        viewModel.setIngredientQuantity(etIngredientQuantity.getText().toString());
     }
 }

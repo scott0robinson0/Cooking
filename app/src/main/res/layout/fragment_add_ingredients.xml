@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Quantity"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/etIngredientName"
         app:layout_constraintStart_toStartOf="@+id/etIngredientName"
@@ -18,7 +18,7 @@
 
     <ImageButton
         android:id="@+id/btnAddIngredient"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/etIngredientQuantity"
@@ -35,7 +35,7 @@
         android:layout_marginEnd="4dp"
         android:ems="10"
         android:hint="Ingredient"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
         android:minHeight="48dp"
         app:layout_constraintEnd_toStartOf="@+id/btnAddIngredient"
         app:layout_constraintStart_toStartOf="parent"

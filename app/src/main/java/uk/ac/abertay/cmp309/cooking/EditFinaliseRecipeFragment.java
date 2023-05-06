@@ -45,7 +45,7 @@ public class EditFinaliseRecipeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String recipeName = etRecipeName.getText().toString();
-                if (recipeName == "") {
+                if (recipeName.equals("")) {
                     Toast.makeText(getContext(), "Recipe name is mandatory.", Toast.LENGTH_SHORT).show();
 
                 } else {
@@ -74,5 +74,12 @@ public class EditFinaliseRecipeFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        recipe.setName(etRecipeName.getText().toString());
+        viewModel.setRecipe(recipe);
     }
 }

@@ -2,27 +2,49 @@ package uk.ac.abertay.cmp309.cooking;
 
 import androidx.lifecycle.ViewModel;
 
-public class RecipeViewModel extends ViewModel {
-    private Recipe recipe;
+import java.util.ArrayList;
+
+public class AddRecipeViewModel extends ViewModel {
+    private ArrayList<Ingredient> ingredients;
+    private ArrayList<Instruction> instructions;
+    private String recipeName;
     private String ingredientName;
     private String ingredientQuantity;
     private String instruction;
     private String timer;
 
-    public RecipeViewModel() {
-        this.recipe = new Recipe();
+    public AddRecipeViewModel() {
+        this.ingredients = new ArrayList<>();
+        this.instructions = new ArrayList<>();
+        this.recipeName = "";
         this.ingredientName = "";
         this.ingredientQuantity = "";
         this.instruction = "";
         this.timer = "";
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public ArrayList<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public ArrayList<Instruction> getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(ArrayList<Instruction> instructions) {
+        this.instructions = instructions;
+    }
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
     }
 
     public String getIngredientName() {

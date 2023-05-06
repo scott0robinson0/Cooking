@@ -1,10 +1,15 @@
 package uk.ac.abertay.cmp309.cooking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
 public class AddRecipeActivity extends AppCompatActivity {
+    private int currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,12 +19,44 @@ public class AddRecipeActivity extends AppCompatActivity {
         AddIngredientsFragment addIngredientsFragment = new AddIngredientsFragment();
         AddInstructionsFragment addInstructionsFragment = new AddInstructionsFragment();
         AddFinaliseRecipeFragment addFinaliseRecipeFragment = new AddFinaliseRecipeFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addIngredientsFragment).commit();
 
-        findViewById(R.id.btnInstructions).setOnClickListener(view -> getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addInstructionsFragment).commit());
+        if (savedInstanceState != null) {
+            currentFragment = savedInstanceState.getInt("current_fragment");
+            switch (currentFragment) {
+                case 0:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addIngredientsFragment).commit();
+                    break;
+                case 1:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addInstructionsFragment).commit();
+                    break;
+                case 2:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addFinaliseRecipeFragment).commit();
+                    break;
+            }
+        } else {
+            currentFragment = 0;
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addIngredientsFragment).commit();
+        }
 
-        findViewById(R.id.btnIngredients).setOnClickListener(view -> getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addIngredientsFragment).commit());
+        findViewById(R.id.btnIngredients).setOnClickListener(view -> {
+            currentFragment = 0;
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addIngredientsFragment).commit();
+        });
 
-        findViewById(R.id.btnDone).setOnClickListener(view -> getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addFinaliseRecipeFragment).commit());
+        findViewById(R.id.btnInstructions).setOnClickListener(view -> {
+            currentFragment = 1;
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addInstructionsFragment).commit();
+        });
+
+        findViewById(R.id.btnDone).setOnClickListener(view -> {
+            currentFragment = 2;
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragmentContainer, addFinaliseRecipeFragment).commit();
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("current_fragment", currentFragment);
     }
 }

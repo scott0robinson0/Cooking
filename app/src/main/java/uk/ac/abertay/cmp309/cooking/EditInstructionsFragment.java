@@ -1,6 +1,7 @@
 package uk.ac.abertay.cmp309.cooking;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,9 @@ public class EditInstructionsFragment extends Fragment {
         etTimer = view.findViewById(R.id.etTimer);
         btnAddInstruction = view.findViewById(R.id.btnAddInstruction);
 
+        etInstruction.setText(viewModel.getInstruction());
+        etTimer.setText(viewModel.getTimer());
+
         editInstructionsAdapter = new EditInstructionsAdapter(getContext(), recipe.getInstructions());
         lvInstructions.setAdapter(editInstructionsAdapter);
 
@@ -60,5 +64,8 @@ public class EditInstructionsFragment extends Fragment {
         super.onPause();
         if (!recipe.getIngredients().isEmpty())
             viewModel.getRecipe().setIngredients(recipe.getIngredients());
+
+        viewModel.setInstruction(etInstruction.getText().toString());
+        viewModel.setTimer(etTimer.getText().toString());
     }
 }
