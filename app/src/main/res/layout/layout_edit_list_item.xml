@@ -16,7 +16,9 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/editBtnDelete"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck,VisualLintTextFieldSize"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/editEt2"
@@ -28,16 +30,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editEt1"
         app:layout_constraintStart_toStartOf="@+id/editEt1"
-        app:layout_constraintTop_toBottomOf="@+id/editEt1" />
+        app:layout_constraintTop_toBottomOf="@+id/editEt1"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck,VisualLintTextFieldSize"
+        android:autofillHints="" />
 
     <ImageButton
         android:id="@+id/editBtnDelete"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/delete_button"
         app:layout_constraintBottom_toBottomOf="@+id/editEt2"
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editEt1"
-        app:srcCompat="@drawable/baseline_delete_24" />
+        app:srcCompat="@drawable/baseline_delete_24"
+        tools:ignore="RedundantDescriptionCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

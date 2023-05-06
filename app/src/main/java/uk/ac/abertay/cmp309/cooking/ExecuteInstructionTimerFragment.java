@@ -4,26 +4,19 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import java.util.Locale;
 
@@ -38,7 +31,6 @@ public class ExecuteInstructionTimerFragment extends Fragment {
     private static final String CHANNEL_ID_NORMAL = "cooking_normal";
     private static final String CHANNEL_ID_LOW = "cooking_low";
     private static final String CHANNEL_ID_IMPORTANT = "cooking_important";
-    public static final String ACTION_RESET = "uk.ac.abertay.cmp309.ACTION_RESET";
     private int NOTIFICATION_ID;
     private NotificationManager notificationManager;
     private Notification.Builder timerNotification;
@@ -57,61 +49,42 @@ public class ExecuteInstructionTimerFragment extends Fragment {
         btnStart = view.findViewById(R.id.timerBtnStart);
         btnReset = view.findViewById(R.id.timerBtnReset);
         Bundle args = getArguments();
-        NOTIFICATION_ID = args.getInt("position");
 
+        if (args == null) throw new AssertionError("args cannot be null");
+        NOTIFICATION_ID = args.getInt("position");
         Recipe recipe = args.getParcelable("recipe");
         Instruction instruction = recipe.getInstructions().get(NOTIFICATION_ID - 1);
 
         startTimeMillis = Long.parseLong(instruction.timer) * 60000;
         timeLeftMillis = startTimeMillis;
 
-        TimeReceiver timeReceiver = new TimeReceiver();
-        IntentFilter timerFilter = new IntentFilter();
-        timerFilter.addAction(ACTION_RESET);
-        getActivity().registerReceiver(timeReceiver, timerFilter);
-
         ((TextView) view.findViewById(R.id.timerTxtInstruction)).setText(instruction.instruction);
 
+        if (getActivity() == null) throw new AssertionError("Activity cannot be null");
         notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.createNotificationChannel(new NotificationChannel(CHANNEL_ID_LOW,"LOW", NotificationManager.IMPORTANCE_LOW));
         notificationManager.createNotificationChannel(new NotificationChannel(CHANNEL_ID_IMPORTANT,"IMPORTANT", NotificationManager.IMPORTANCE_HIGH));
 
         Intent openIntent = new Intent(getContext(), ExecuteRecipeActivity.class);
         openIntent.putExtra("position", NOTIFICATION_ID);
-//        openIntent.putExtra("recipe", recipe);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        PendingIntent openPI = PendingIntent.getActivity(getContext(), NOTIFICATION_ID, openIntent, 0);
-
-//        Intent resetIntent = new Intent();
-//        resetIntent.setAction(ACTION_RESET);
-//        PendingIntent resetPI = PendingIntent.getBroadcast(getContext(), NOTIFICATION_ID, resetIntent, 0);
-//        Icon resetIcon = Icon.createWithResource(getContext(), android.R.drawable.ic_menu_revert);
-//        Notification.Action resetAction = new Notification.Action.Builder(resetIcon, "Reset", resetPI).build();
+        PendingIntent openPI = PendingIntent.getActivity(getContext(), NOTIFICATION_ID, openIntent, PendingIntent.FLAG_IMMUTABLE);
 
         timerNotification = new Notification.Builder(getContext(), CHANNEL_ID_NORMAL)
                 .setSmallIcon(R.drawable.baseline_timer_24)
                 .setContentTitle(String.valueOf(NOTIFICATION_ID))
-//                .addAction(resetAction)
                 .setChannelId(CHANNEL_ID_LOW)
                 .setContentIntent(openPI);
 
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (timerRunning) {
-                    pauseTimer();
-                } else {
-                    startTimer();
-                }
+        btnStart.setOnClickListener(view1 -> {
+            if (timerRunning) {
+                pauseTimer();
+            } else {
+                startTimer();
             }
         });
 
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resetTimer();
-            }
-        });
+        btnReset.setOnClickListener(view12 -> resetTimer());
 
         updateCountDownText();
     }
@@ -130,7 +103,7 @@ public class ExecuteInstructionTimerFragment extends Fragment {
             @Override
             public void onFinish() {
                 timerRunning = false;
-                btnStart.setText("Start");
+                btnStart.setText(R.string.start);
                 btnReset.setVisibility(View.VISIBLE);
                 timerNotification.setContentText("Timer finished")
                         .setChannelId(CHANNEL_ID_IMPORTANT);
@@ -140,14 +113,14 @@ public class ExecuteInstructionTimerFragment extends Fragment {
         }.start();
 
         timerRunning = true;
-        btnStart.setText("Pause");
+        btnStart.setText(R.string.pause);
         btnReset.setVisibility(View.VISIBLE);
     }
 
     private void pauseTimer() {
         countDownTimer.cancel();
         timerRunning = false;
-        btnStart.setText("Start");
+        btnStart.setText(R.string.start);
         btnReset.setVisibility(View.VISIBLE);
     }
 
@@ -168,17 +141,5 @@ public class ExecuteInstructionTimerFragment extends Fragment {
         int seconds = (int)(timeMillis / 1000) % 60;
 
         return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-    }
-
-    private class TimeReceiver extends BroadcastReceiver {
-        final static int NOTIFICATION_ID_TIMER = 2;
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            switch (intent.getAction()) {
-                case ACTION_RESET:
-                    resetTimer();
-                    break;
-            }
-        }
     }
 }

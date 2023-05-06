@@ -1,7 +1,6 @@
 package uk.ac.abertay.cmp309.cooking;
 
 import android.content.Context;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class EditInstructionsAdapter extends ArrayAdapter<Instruction> {
     public EditInstructionsAdapter(Context context, ArrayList<Instruction> instructions) {
@@ -35,26 +33,11 @@ public class EditInstructionsAdapter extends ArrayAdapter<Instruction> {
 
         btnDelete.setImageResource(R.drawable.baseline_delete_24);
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                remove(instruction);
-            }
-        });
+        btnDelete.setOnClickListener(view -> remove(instruction));
 
-        etInstruction.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                instruction.instruction = etInstruction.getText().toString();
-            }
-        });
+        etInstruction.setOnFocusChangeListener((view, b) -> instruction.instruction = etInstruction.getText().toString());
 
-        etTimer.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                instruction.timer = etTimer.getText().toString();
-            }
-        });
+        etTimer.setOnFocusChangeListener((view, b) -> instruction.timer = etTimer.getText().toString());
 
         etInstruction.setText(instruction.instruction);
 

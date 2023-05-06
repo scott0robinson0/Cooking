@@ -40,22 +40,19 @@ public class EditIngredientsFragment extends Fragment {
         editIngredientsAdapter = new EditIngredientsAdapter(getContext(), recipe.getIngredients());
         lvIngredients.setAdapter(editIngredientsAdapter);
 
-        btnAddIngredient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (etIngredientName.getText().toString().equals("")) {
-                    Toast.makeText(getContext(), "Ingredient name is mandatory", Toast.LENGTH_SHORT).show();
-                }
-                else if (etIngredientQuantity.getText().toString().equals("")) {
-                    Toast.makeText(getContext(), "Ingredient quantity is mandatory", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Ingredient ingredient = new Ingredient(etIngredientName.getText().toString(), etIngredientQuantity.getText().toString());
-                    recipe.addIngredient(ingredient);
-                    editIngredientsAdapter.notifyDataSetChanged();
-                    etIngredientName.setText("");
-                    etIngredientQuantity.setText("");
-                }
+        btnAddIngredient.setOnClickListener(view1 -> {
+            if (etIngredientName.getText().toString().equals("")) {
+                Toast.makeText(getContext(), "Ingredient name is mandatory", Toast.LENGTH_SHORT).show();
+            }
+            else if (etIngredientQuantity.getText().toString().equals("")) {
+                Toast.makeText(getContext(), "Ingredient quantity is mandatory", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Ingredient ingredient = new Ingredient(etIngredientName.getText().toString(), etIngredientQuantity.getText().toString());
+                recipe.addIngredient(ingredient);
+                editIngredientsAdapter.notifyDataSetChanged();
+                etIngredientName.setText("");
+                etIngredientQuantity.setText("");
             }
         });
 

@@ -6,6 +6,18 @@
     <string name="ingredient_name_hint">Ingredient</string>
     <string name="delete_ingredient">Delete Ingredient</string>
     <string name="quantity">Quantity</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+    <string name="instruction">Instruction</string>
+    <string name="timer_minutes">Timer (Minutes)</string>
+    <string name="add_instruction">add instruction</string>
+    <string name="_00_00">00:00</string>
+    <string name="reset">Reset</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="confirm">Confirm</string>
+    <string name="delete_button">delete button</string>
+    <string name="view">View</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/timerTxtTimer"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +22,7 @@
         android:id="@+id/timerBtnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="@string/start"
         app:layout_constraintBottom_toTopOf="@+id/timerBtnReset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -34,7 +33,7 @@
         android:id="@+id/timerTxtTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:00"
+        android:text="@string/_00_00"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/timerBtnStart"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,12 +45,12 @@
         android:id="@+id/timerBtnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
+        android:text="@string/reset"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timerBtnStart"
-        android:visibility="invisible"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

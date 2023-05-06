@@ -3,8 +3,6 @@ package uk.ac.abertay.cmp309.cooking;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 
 public class Recipe implements Parcelable {
@@ -19,13 +17,6 @@ public class Recipe implements Parcelable {
     private String id;
 
     public Recipe() {}
-
-//    public Recipe() {
-//        ingredients = new ArrayList<Ingredient>();
-//        instructions = new ArrayList<Instruction>();
-//        id = "";
-//        name = "";
-//    }
 
     protected Recipe(Parcel in) {
         name = in.readString();

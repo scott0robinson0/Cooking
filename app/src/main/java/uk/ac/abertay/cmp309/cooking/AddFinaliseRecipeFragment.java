@@ -14,8 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -27,7 +25,7 @@ public class AddFinaliseRecipeFragment extends Fragment {
     private List<Ingredient> ingredients = new ArrayList<>();
     private List<Instruction> instructions = new ArrayList<>();
     private AddRecipeViewModel viewModel;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EditText etRecipeName;
 
     public AddFinaliseRecipeFragment() {}
@@ -49,39 +47,28 @@ public class AddFinaliseRecipeFragment extends Fragment {
 
         etRecipeName.setText(viewModel.getRecipeName());
 
-        view.findViewById(R.id.btnConfirm).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String recipeName = etRecipeName.getText().toString();
-                if (recipeName.equals("")) {
-                    Toast.makeText(getContext(), "Recipe name is mandatory.", Toast.LENGTH_SHORT).show();
-                } else if (ingredients.isEmpty()) {
-                    Toast.makeText(getContext(), "Ingredients are mandatory.", Toast.LENGTH_SHORT).show();
-                } else if (instructions.isEmpty()) {
-                    Toast.makeText(getContext(), "Instructions are mandatory.", Toast.LENGTH_SHORT).show();
-                } else {
-                    Map<String, Object> recipe = new HashMap<>();
-                    recipe.put(Recipe.KEY_NAME, recipeName);
-                    recipe.put(Recipe.KEY_INGREDIENTS, ingredients);
-                    recipe.put(Recipe.KEY_INSTRUCTIONS, instructions);
+        view.findViewById(R.id.btnConfirm).setOnClickListener(view1 -> {
+            String recipeName = etRecipeName.getText().toString();
+            if (recipeName.equals("")) {
+                Toast.makeText(getContext(), "Recipe name is mandatory.", Toast.LENGTH_SHORT).show();
+            } else if (ingredients.isEmpty()) {
+                Toast.makeText(getContext(), "Ingredients are mandatory.", Toast.LENGTH_SHORT).show();
+            } else if (instructions.isEmpty()) {
+                Toast.makeText(getContext(), "Instructions are mandatory.", Toast.LENGTH_SHORT).show();
+            } else {
+                Map<String, Object> recipe = new HashMap<>();
+                recipe.put(Recipe.KEY_NAME, recipeName);
+                recipe.put(Recipe.KEY_INGREDIENTS, ingredients);
+                recipe.put(Recipe.KEY_INSTRUCTIONS, instructions);
 
-                    db.collection("recipes").document()
-                            .set(recipe)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Log.d("Firestore", "DocumentSnapshot successfully written!");
-                                    Toast.makeText(getContext(), "Recipe added.", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getContext(), MainActivity.class));
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("Firestore", "Error writing document");
-                                }
-                            });
-                }
+                db.collection("recipes").document()
+                        .set(recipe)
+                        .addOnSuccessListener(unused -> {
+                            Log.d("Firestore", "DocumentSnapshot successfully written!");
+                            Toast.makeText(getContext(), "Recipe added.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getContext(), MainActivity.class));
+                        })
+                        .addOnFailureListener(e -> Log.d("Firestore", "Error writing document"));
             }
         });
     }

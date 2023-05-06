@@ -31,12 +31,7 @@ public class AddInstructionsAdapter extends ArrayAdapter<Instruction> {
 
         btnDelete.setImageResource(R.drawable.baseline_delete_24);
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                remove(instruction);
-            }
-        });
+        btnDelete.setOnClickListener(view -> remove(instruction));
 
         tvInstructionName.setText(instruction.instruction);
         tvInstructionQuantity.setText(instruction.timer);

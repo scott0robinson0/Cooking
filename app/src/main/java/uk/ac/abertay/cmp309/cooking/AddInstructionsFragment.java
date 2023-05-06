@@ -48,19 +48,16 @@ public class AddInstructionsFragment extends Fragment {
 
         addInstructionsAdapter = new AddInstructionsAdapter(getContext(), instructions);
         lvInstructions.setAdapter(addInstructionsAdapter);
-        btnAddInstruction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (etInstruction.getText().toString().equals("")) {
-                    Toast.makeText(getContext(), "Instruction is mandatory", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Instruction instruction = new Instruction(etInstruction.getText().toString(), etTimer.getText().toString());
-                    instructions.add(instruction);
-                    addInstructionsAdapter.notifyDataSetChanged();
-                    etInstruction.setText("");
-                    etTimer.setText("");
-                }
+        btnAddInstruction.setOnClickListener(view1 -> {
+            if (etInstruction.getText().toString().equals("")) {
+                Toast.makeText(getContext(), "Instruction is mandatory", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Instruction instruction = new Instruction(etInstruction.getText().toString(), etTimer.getText().toString());
+                instructions.add(instruction);
+                addInstructionsAdapter.notifyDataSetChanged();
+                etInstruction.setText("");
+                etTimer.setText("");
             }
         });
     }

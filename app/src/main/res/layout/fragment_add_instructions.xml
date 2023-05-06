@@ -12,29 +12,34 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="4dp"
         android:ems="10"
-        android:hint="Instruction"
+        android:hint="@string/instruction"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
         app:layout_constraintEnd_toStartOf="@+id/btnAddInstruction"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints=""
+        tools:ignore="VisualLintTextFieldSize" />
 
     <EditText
         android:id="@+id/etTimer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Timer (Minutes)"
+        android:hint="@string/timer_minutes"
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/etInstruction"
         app:layout_constraintStart_toStartOf="@+id/etInstruction"
-        app:layout_constraintTop_toBottomOf="@+id/etInstruction" />
+        app:layout_constraintTop_toBottomOf="@+id/etInstruction"
+        android:autofillHints=""
+        tools:ignore="VisualLintTextFieldSize" />
 
     <ImageButton
         android:id="@+id/btnAddInstruction"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/add_instruction"
         app:layout_constraintBottom_toBottomOf="@+id/etTimer"
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"

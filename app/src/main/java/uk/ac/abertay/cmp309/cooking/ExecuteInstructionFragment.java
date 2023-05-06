@@ -11,8 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class ExecuteInstructionFragment extends Fragment {
-    public static final String ARG_OBJECT = "object";
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -22,6 +20,7 @@ public class ExecuteInstructionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
+        if (args == null) throw new AssertionError("args cannot be null");
         Instruction instruction = args.getParcelable("instruction");
         ((TextView) view.findViewById(R.id.text1)).setText(instruction.instruction);
     }

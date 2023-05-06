@@ -12,10 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 public class ViewInstructionsFragment extends Fragment {
-    Recipe recipe;
-    ViewInstructionsAdapter adapter;
-    RecipeViewModel viewModel;
-
     public ViewInstructionsFragment() { }
 
     @Nullable
@@ -24,10 +20,10 @@ public class ViewInstructionsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         View view = inflater.inflate(R.layout.fragment_view_instructions, container, false);
-        viewModel = new ViewModelProvider(requireActivity()).get(RecipeViewModel.class);
-        recipe = viewModel.getRecipe();
+        RecipeViewModel viewModel = new ViewModelProvider(requireActivity()).get(RecipeViewModel.class);
+        Recipe recipe = viewModel.getRecipe();
         ListView listView = view.findViewById(R.id.lvViewInstructions);
-        adapter = new ViewInstructionsAdapter(getContext(), recipe.getInstructions());
+        ViewInstructionsAdapter adapter = new ViewInstructionsAdapter(getContext(), recipe.getInstructions());
         listView.setAdapter(adapter);
         return view;
     }

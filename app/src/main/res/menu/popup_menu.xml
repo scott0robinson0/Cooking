@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/start"
-        android:title="Start"/>
+        android:title="@string/start" />
     <item
         android:id="@+id/view"
-        android:title="View"/>
+        android:title="@string/view"/>
 
     <item
         android:id="@+id/edit"
-        android:title="Edit"/>
+        android:title="@string/edit"/>
 
     <item
         android:id="@+id/delete"
-        android:title="Delete"/>
+        android:title="@string/delete"/>
 </menu>

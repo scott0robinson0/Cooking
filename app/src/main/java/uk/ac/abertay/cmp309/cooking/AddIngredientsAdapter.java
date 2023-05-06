@@ -33,12 +33,7 @@ public class AddIngredientsAdapter extends ArrayAdapter<Ingredient> {
 
         btnDelete.setImageResource(R.drawable.baseline_delete_24);
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                remove(ingredient);
-            }
-        });
+        btnDelete.setOnClickListener(view -> remove(ingredient));
 
         tvIngredientName.setText(ingredient.name);
         tvIngredientQuantity.setText(ingredient.quantity);

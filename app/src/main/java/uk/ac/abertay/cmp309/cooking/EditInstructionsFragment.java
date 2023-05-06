@@ -1,7 +1,6 @@
 package uk.ac.abertay.cmp309.cooking;
 
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,19 +40,16 @@ public class EditInstructionsFragment extends Fragment {
         editInstructionsAdapter = new EditInstructionsAdapter(getContext(), recipe.getInstructions());
         lvInstructions.setAdapter(editInstructionsAdapter);
 
-        btnAddInstruction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (etInstruction.getText().toString().equals("")) {
-                    Toast.makeText(getContext(), "Instruction is mandatory", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Instruction instruction = new Instruction(etInstruction.getText().toString(), etTimer.getText().toString());
-                    recipe.addInstruction(instruction);
-                    editInstructionsAdapter.notifyDataSetChanged();
-                    etInstruction.setText("");
-                    etTimer.setText("");
-                }
+        btnAddInstruction.setOnClickListener(view1 -> {
+            if (etInstruction.getText().toString().equals("")) {
+                Toast.makeText(getContext(), "Instruction is mandatory", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Instruction instruction = new Instruction(etInstruction.getText().toString(), etTimer.getText().toString());
+                recipe.addInstruction(instruction);
+                editInstructionsAdapter.notifyDataSetChanged();
+                etInstruction.setText("");
+                etTimer.setText("");
             }
         });
         return view;

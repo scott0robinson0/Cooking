@@ -1,12 +1,11 @@
 package uk.ac.abertay.cmp309.cooking;
 
+import android.os.Bundle;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 public class ViewRecipeActivity extends AppCompatActivity {
     private int currentFragment;

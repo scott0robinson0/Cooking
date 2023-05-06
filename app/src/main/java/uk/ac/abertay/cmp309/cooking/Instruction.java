@@ -3,8 +3,6 @@ package uk.ac.abertay.cmp309.cooking;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-
 public class Instruction implements Parcelable {
     public String instruction;
     public String timer;
