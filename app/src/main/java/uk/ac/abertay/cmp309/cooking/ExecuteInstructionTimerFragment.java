@@ -130,6 +130,7 @@ public class ExecuteInstructionTimerFragment extends Fragment {
         updateCountDownText();
         btnReset.setVisibility(View.INVISIBLE);
         btnStart.setVisibility(View.VISIBLE);
+        notificationManager.cancel(NOTIFICATION_ID);
     }
 
     private void updateCountDownText() {
