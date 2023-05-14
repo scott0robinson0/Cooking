@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class ExecuteAdapter extends FragmentStateAdapter {
     private final int NUM_PAGES;
-    Recipe recipe;
+    private final Recipe recipe;
 
     public ExecuteAdapter(@NonNull FragmentActivity fragmentActivity, Recipe recipe) {
         super(fragmentActivity);
