@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -34,6 +35,7 @@ public class ExecuteInstructionTimerFragment extends Fragment {
     private int NOTIFICATION_ID;
     private NotificationManager notificationManager;
     private Notification.Builder timerNotification;
+    private static final int REQUEST_CODE = 1;
 
     public ExecuteInstructionTimerFragment() {}
 
@@ -45,6 +47,11 @@ public class ExecuteInstructionTimerFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        int checkResult = requireContext().checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS);
+
+        if (checkResult != PackageManager.PERMISSION_GRANTED)
+            requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, REQUEST_CODE);
+
         tvTimer = view.findViewById(R.id.timerTxtTimer);
         btnStart = view.findViewById(R.id.timerBtnStart);
         btnReset = view.findViewById(R.id.timerBtnReset);
@@ -85,7 +92,6 @@ public class ExecuteInstructionTimerFragment extends Fragment {
         });
 
         btnReset.setOnClickListener(view12 -> resetTimer());
-
         updateCountDownText();
     }
 

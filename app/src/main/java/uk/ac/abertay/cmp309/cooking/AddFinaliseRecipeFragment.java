@@ -61,14 +61,14 @@ public class AddFinaliseRecipeFragment extends Fragment {
                 recipe.put(Recipe.KEY_INGREDIENTS, ingredients);
                 recipe.put(Recipe.KEY_INSTRUCTIONS, instructions);
 
-                db.collection("recipes").document()
+                db.collection(Recipe.COLLECTION_PATH).document()
                         .set(recipe)
                         .addOnSuccessListener(unused -> {
-                            Log.d("Firestore", "DocumentSnapshot successfully written!");
+                            Log.d(Utils.TAG, "DocumentSnapshot successfully written!");
                             Toast.makeText(getContext(), "Recipe added.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getContext(), MainActivity.class));
                         })
-                        .addOnFailureListener(e -> Log.d("Firestore", "Error writing document"));
+                        .addOnFailureListener(e -> Log.d(Utils.TAG, "Error writing document"));
             }
         });
     }

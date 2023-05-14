@@ -53,7 +53,7 @@ public class ViewRecipesActivity extends AppCompatActivity {
                         startActivity(editIntent);
                         break;
                     case "Delete":
-                        db.collection("recipes").document(recipe.getId())
+                        db.collection(Recipe.COLLECTION_PATH).document(recipe.getId())
                                 .delete()
                                 .addOnSuccessListener(unused -> {
                                     Log.d(Utils.TAG, "DocumentSnapshot successfully written!");

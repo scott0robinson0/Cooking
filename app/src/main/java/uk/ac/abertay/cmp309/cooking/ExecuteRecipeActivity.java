@@ -22,10 +22,9 @@ public class ExecuteRecipeActivity extends AppCompatActivity {
         viewModel.setRecipe(recipe);
 
         ((TextView)findViewById(R.id.executeTxtRecipeName)).setText(recipe.getName());
-
-        viewPager = findViewById(R.id.executeViewPager);
         ExecuteAdapter executeAdapter = new ExecuteAdapter(this, recipe);
 
+        viewPager = findViewById(R.id.executeViewPager);
         viewPager.setOffscreenPageLimit(recipe.getInstructions().size());
         viewPager.setAdapter(executeAdapter);
     }
