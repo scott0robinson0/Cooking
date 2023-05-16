@@ -47,8 +47,8 @@ public class ExecuteInstructionTimerFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        int checkResult = requireContext().checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS);
 
+        int checkResult = requireContext().checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS);
         if (checkResult != PackageManager.PERMISSION_GRANTED)
             requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, REQUEST_CODE);
 
