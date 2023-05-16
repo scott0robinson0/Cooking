@@ -21,4 +21,9 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="recipes">Recipes</string>
+    <string name="add_ingredient">Add Ingredient</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="ingredients_page">Ingredients Page</string>
+    <string name="recipe_instructions_page">Recipe Instructions Page</string>
+    <string name="finalise_recipe_page">Finalise Recipe Page</string>
 </resources>

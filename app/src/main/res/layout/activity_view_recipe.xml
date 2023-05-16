@@ -45,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/ingredients_page"
             android:src="@drawable/baseline_fastfood_24" />
 
         <ImageButton
@@ -52,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/recipe_instructions_page"
             android:src="@drawable/baseline_format_list_numbered_24" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
